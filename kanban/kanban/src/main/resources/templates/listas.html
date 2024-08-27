@@ -1,0 +1,157 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Kanban Board</title>
+    <link rel="stylesheet" href="/css/style.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/ionicons/5.5.2/ionicons.min.css">
+
+</head>
+<body>
+<header>
+    <div class="header-content">
+        <img src="https://img.icons8.com/?size=100&id=13042&format=png&color=000000" alt="User Icon" class="user-icon">
+        <div class="welcome-message">Bem-vindo, usuário</div>
+    </div>
+    <div class="header-actions">
+        <form action="#" th:action="@{/kanban/lista}" method="post" class="create-list-form">
+            <input type="text" name="nome" placeholder="Nome da Lista" required>
+            <button type="submit" class="btn btn-primary">Criar Nova Lista</button>
+        </form>
+    </div>
+</header>
+
+<div class="area"></div><nav class="main-menu">
+    <ul>
+        <li>
+            <a href="https://jbfarrow.com">
+                <i class="fa fa-home fa-2x"></i>
+                <span class="nav-text">
+                           Dashboard
+                        </span>
+            </a>
+
+        </li>
+
+        <li class="has-subnav">
+            <a href="#">
+                <i class="fa fa-comments fa-2x"></i>
+                <span class="nav-text">
+                            Academia de Java
+                        </span>
+            </a>
+
+        </li>
+        <li>
+            <a href="#">
+                <i class="fa fa-cogs fa-2x"></i>
+                <span class="nav-text">
+                            Configurações
+                        </span>
+            </a>
+        </li>
+        <li>
+            <a href="#">
+                <i class="fa fa-map-marker fa-2x"></i>
+                <span class="nav-text">
+                            Onde estou?
+                        </span>
+            </a>
+        </li>
+        <li>
+            <a href="#">
+                <i class="fa fa-info fa-2x"></i>
+                <span class="nav-text">
+                            Informações
+                        </span>
+            </a>
+        </li>
+    </ul>
+
+    <ul class="logout">
+        <li>
+            <a href="#">
+                <i class="fa fa-power-off fa-2x"></i>
+                <span class="nav-text">
+                            Logout
+                        </span>
+            </a>
+        </li>
+    </ul>
+</nav>
+
+<div class="content">
+    <div id="list-container">
+        <div th:each="lista : ${listas}" class="list">
+            <div class="list-header">
+                <h2 th:text="${lista.nome}">Nome da Lista</h2>
+                <div class="list-actions">
+                    <div class="dropdown">
+                        <button class="botton">Ações</button>
+                        <div class="dropdown-content">
+                            <a href="#" th:href="@{/kanban/lista/editar/{id}(id=${lista.id})}">Editar</a>
+                            <form action="#" th:action="@{/kanban/lista/delete/{id}(id=${lista.id})}" method="post" class="delete-form" onsubmit="return confirm('Tem certeza que deseja deletar esta lista?')">
+                                <input type="hidden" name="_method" value="delete"/>
+                                <button type="submit" class="delete-list">Deletar</button>
+                            </form>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Formulário de criação de card - Posicionado fora do loop de cards -->
+            <form action="#" th:action="@{/cards/criar}" method="post" class="create-card-form">
+                <input type="hidden" class="imput" name="listaId" th:value="${lista.id}">
+                <input type="text" class="imput" name="titulo" placeholder="Título do Card" required>
+                <textarea name="descricao" class="imput" placeholder="Descrição do Card" required></textarea>
+                <select name="prioridade" required>
+                    <option value="priority-low">Baixa</option>
+                    <option value="priority-medium">Média</option>
+                    <option value="priority-high">Alta</option>
+                </select>
+                <button type="submit" class="btn btn-primary">Adicionar Card</button>
+            </form>
+
+            <div th:each="card : ${lista.cards}" class="card" th:classappend="${card.prioridade}">
+                <h3 th:text="${card.titulo}">Título do Card</h3>
+                <p th:text="${card.descricao}">Descrição do Card</p>
+                <div class="card-actions">
+                    <div class="dropdown">
+                        <button class="botton">Ações</button>
+                        <div class="dropdown-content">
+                            <a href="#" th:href="@{/cards/editar/{id}(id=${card.id})}">Editar</a>
+                            <form action="#" th:action="@{/cards/deletar/{id}(id=${card.id})}" method="post" class="delete-form" onsubmit="return confirm('Tem certeza que deseja deletar este card?')">
+                                <input type="hidden" class="imput" name="_method" value="delete"/>
+                                <button type="submit" class="delete-card">Deletar</button>
+                            </form>
+                            <!-- Formulário para Alterar Prioridade -->
+                            <form action="#" th:action="@{/cards/alterarPrioridade}" method="post" class="priority-form" style="display:inline;">
+                                <input type="hidden"  name="id" th:value="${card.id}"/>
+                                <select name="prioridade" class="select" required onchange="this.form.submit()">
+                                    <option value="priority-low" th:selected="${card.prioridade == 'priority-low'}">Baixa</option>
+                                    <option value="priority-medium" th:selected="${card.prioridade == 'priority-medium'}">Média</option>
+                                    <option value="priority-high" th:selected="${card.prioridade == 'priority-high'}">Alta</option>
+                                </select>
+                            </form>
+                            <form action="#" th:action="@{/cards/mover}" method="post" class="priority-form" style="display:inline;">
+                                <input type="hidden" name="cardId" th:value="${card.id}"/>
+                                <label for="novaLista">Mover para:</label>
+                                <select id="novaLista" class="select" name="novaListaId" onchange="this.form.submit()" required>
+                                    <option value="" disabled selected>Escolha uma lista</option>
+                                    <!-- Iterar sobre as listas disponíveis -->
+                                    <div th:each="lista : ${listas}">
+                                        <option th:value="${lista.id}" th:text="${lista.nome}"></option>
+                                    </div>
+                                </select>
+                            </form>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+</div>
+</body>
+</html>

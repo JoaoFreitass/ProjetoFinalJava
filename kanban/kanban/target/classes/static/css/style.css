@@ -1,0 +1,628 @@
+/* Reset básico */
+@import url(//netdna.bootstrapcdn.com/font-awesome/4.0.3/css/font-awesome.css);
+@import url(https://fonts.googleapis.com/css?family=Titillium+Web:300);
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+/* Cores */
+:root {
+    --background-color: #1e1e1e;
+    --header-background: #333;
+    --lista-background: #2a2a2a;
+    --card-background: #3a3a3a;
+    --text-color: #ffffff;
+    --text-muted: #aaaaaa;
+    --button-background: #444444;
+    --button-text: #ffffff;
+    --button-padding: 8px;
+    --button-font-size: 16px;
+    --button-width: 160px;
+    --button-height: 34px;
+    --priority-green: #00ff00; /* Verde para prioridade baixa */
+    --priority-yellow: #ffff00; /* Amarelo para prioridade média */
+    --priority-red: #ff0000; /* Vermelho para prioridade alta */
+}
+
+/* Layout */
+body {
+    font-family: Arial, sans-serif;
+    background-color: var(--background-color);
+    color: var(--text-color);
+    padding: 1rem;
+    margin: 0;
+    margin-left: 50px;
+}
+
+/* Cabeçalho */
+header {
+    background-color: var(--header-background);
+    padding: 1rem;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.header-content {
+    display: flex;
+    align-items: center;
+    gap: 1rem;
+}
+
+.user-icon {
+    width: 40px;
+    height: 40px;
+    border-radius: 50%;
+}
+
+.welcome-message {
+    color: var(--text-muted);
+}
+
+.header-actions {
+    display: flex;
+    flex-direction: column;
+    gap: 7px;
+    position: relative;
+    color: white;
+}
+
+.create-list-form {
+    display: flex;
+    gap: 0.5rem;
+}
+
+.create-list-form input[type="text"] {
+    padding: 0.5rem;
+    border-radius: 0.25rem;
+    border: 1px solid #444;
+    background-color: #2b2b2b;
+    color: #ffffff;
+}
+
+.create-list-form button[type="submit"] {
+    background: linear-gradient(140.14deg, #ec540e 15.05%, #d6361f 114.99%)
+    padding-box,
+    linear-gradient(142.51deg, #ff9465 8.65%, #af1905 88.82%) border-box;
+    border-radius: 7px;
+    border: 2px solid transparent;
+
+    text-shadow: 1px 1px 1px #00000040;
+    box-shadow: 8px 8px 20px 0px #45090059;
+
+    padding: 10px 40px;
+    line-height: 20px;
+    cursor: pointer;
+    transition: all 0.3s;
+    color: white;
+    font-size: 18px;
+    font-weight: 500;
+}
+
+.create-list-form button[type="submit"]:hover {
+    box-shadow: none;
+    opacity: 20%;}
+
+/* Main container para conteúdo */
+.main-container {
+    display: flex;
+    padding: 1rem;
+    gap: 1rem;
+    margin-left: 250px;
+
+}
+
+/* Sidebar */
+.fa-2x {
+    font-size: 2em;
+}
+.fa {
+    position: relative;
+    display: table-cell;
+    width: 60px;
+    height: 36px;
+    text-align: center;
+    vertical-align: middle;
+    font-size:20px;
+}
+
+
+.main-menu:hover,nav.main-menu.expanded {
+    width:250px;
+    overflow:visible;
+}
+
+.main-menu {
+    background:#212121;
+    border-right:1px solid #ec540e;
+    position: fixed;
+    top:0;
+    bottom:0;
+    height:100%;
+    left:0;
+    width:60px;
+    overflow:hidden;
+    -webkit-transition:width .05s linear;
+    transition:width .05s linear;
+    -webkit-transform:translateZ(0) scale(1,1);
+    z-index:1000;
+
+}
+
+.main-menu>ul {
+    margin:7px 0;
+
+}
+
+.main-menu li {
+    position:relative;
+    display:block;
+
+    width:250px;
+}
+
+.main-menu li>a {
+    position:relative;
+    display:table;
+    border-collapse:collapse;
+    border-spacing:0;
+    color: #ec540e;
+    font-family: arial;
+    font-size: 14px;
+    text-decoration:none;
+    -webkit-transform:translateZ(0) scale(1,1);
+    -webkit-transition:all .1s linear;
+    transition:all .1s linear;
+
+}
+
+.main-menu .nav-icon {
+    position:relative;
+    display:table-cell;
+    width:60px;
+    height:36px;
+    text-align:center;
+    vertical-align:middle;
+    font-size:18px;
+}
+
+.main-menu .nav-text {
+    position:relative;
+    display:table-cell;
+    vertical-align:middle;
+    width:190px;
+    font-family: 'Titillium Web', sans-serif;
+}
+
+.main-menu>ul.logout {
+    position:absolute;
+    left:0;
+    bottom:0;
+}
+
+.no-touch .scrollable.hover {
+    overflow-y:hidden;
+}
+
+.no-touch .scrollable.hover:hover {
+    overflow-y:auto;
+    overflow:visible;
+}
+
+a:hover,a:focus {
+    text-decoration:none;
+}
+
+nav {
+    -webkit-user-select:none;
+    -moz-user-select:none;
+    -ms-user-select:none;
+    -o-user-select:none;
+    user-select:none;
+}
+
+nav ul,nav li {
+    outline:0;
+    margin:0;
+    padding:0;
+}
+.main-menu li:hover>a,nav.main-menu li.active>a,.dropdown-menu>li>a:hover,.dropdown-menu>li>a:focus,.dropdown-menu>.active>a,.dropdown-menu>.active>a:hover,.dropdown-menu>.active>a:focus,.no-touch .dashboard-page nav.dashboard-menu ul li:hover a,.dashboard-page nav.dashboard-menu ul li.active a {
+    color:#fff;
+    background-color:#000000;
+}
+.area {
+    float: left;
+    background: #e2e2e2;
+    width: 100%;
+    height: 100%;
+}
+@font-face {
+    font-family: 'Titillium Web';
+    font-style: normal;
+    font-weight: 300;
+    src: local('Titillium WebLight'), local('TitilliumWeb-Light'), url(http://themes.googleusercontent.com/static/fonts/titilliumweb/v2/anMUvcNT0H1YN4FII8wpr24bNCNEoFTpS2BTjF6FB5E.woff) format('woff');
+}
+/* Content */
+.content {
+    flex-grow: 1;
+    display: flex;
+    flex-wrap: wrap;
+    gap: 1rem;
+}
+
+/* List container */
+#list-container {
+
+    display: flex; /* Garante que as listas fiquem lado a lado */
+    gap: 1rem; /* Espaçamento entre as listas */
+    overflow-x: auto; /* Permite rolar horizontalmente se o conteúdo for maior que a largura da tela */
+    padding-bottom: 1rem; /* Para evitar que a barra de rolagem horizontal encoste nas listas */
+
+
+}
+
+/* List */
+.list {
+    background-color: var(--lista-background);
+    padding: 1rem;
+    border-radius: 0.5rem;
+    min-width: 300px;
+    flex-grow: 1;
+    max-width: 320px;
+    flex-grow: 0;
+}
+
+.list-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.list-actions {
+    position: relative;
+}
+
+.dropdown {
+    display: inline-block;
+    position: relative; /* Para que o dropdown-content se posicione corretamente em relação ao botão */
+}
+
+.dropdown-button {
+    background-color: #444;
+    color: #ffffff;
+    padding: 0.5rem;
+    border: none;
+    border-radius: 0.25rem;
+    cursor: pointer;
+}
+
+.dropdown-content {
+    display: none;
+    position: absolute;
+    background-color: #333; /* Cor sólida de fundo */
+    min-width: 160px;
+    box-shadow: 0 8px 16px rgba(0, 0, 0, 0.2);
+    z-index: 3; /* Garante que o dropdown fique acima de outros elementos */
+    padding: 8px;
+    border-radius: 0.25rem;
+}
+
+.dropdown-content a {
+    color: #ffffff; /* Cor do texto branca */
+    background-color: #444; /* Cor de fundo sólida e não transparente */
+    width: 100%;
+    height: auto; /* Ajusta a altura automaticamente */
+    padding: 0.5rem;
+    text-decoration: none;
+    border-radius: 0.25rem;
+    font-size: 0.875rem; /* Ajuste conforme necessário */
+    text-align: center;
+    line-height: 1.5; /* Alinhamento vertical do texto */
+    border: 1px solid transparent;
+    display: block; /* Ajusta para exibir em bloco */
+    transition: background-color 0.3s;
+}
+
+.dropdown-content a:hover {
+    background-color: #555; /* Cor um pouco mais clara ao passar o mouse */
+}
+
+.dropdown-content a:focus {
+    outline: 2px solid #ffffff;
+    outline-offset: 2px;
+}
+
+.dropdown:hover .dropdown-content,
+.dropdown-content:hover {
+    display: block;
+}
+
+/* From Uiverse.io by nikk7007 */
+.botton {
+    --color: #00A97F;
+    padding: 0.1em 0.2em;
+    background-color: transparent;
+    border-radius: .3em;
+    position: relative;
+    overflow: hidden;
+    cursor: pointer;
+    transition: .5s;
+    font-weight: 400;
+    font-size: 17px;
+    border: 1px solid;
+    font-family: inherit;
+    text-transform: uppercase;
+    color: var(--color);
+    z-index: 1;
+}
+
+.botton::before, .button::after {
+    content: '';
+    display: block;
+    width: 50px;
+    height: 50px;
+    transform: translate(-50%, -50%);
+    position: absolute;
+    border-radius: 50%;
+    z-index: -1;
+    background-color: var(--color);
+    transition: 1s ease;
+}
+
+.botton::before {
+    top: -1em;
+    left: -1em;
+}
+
+.botton::after {
+    left: calc(100% + 1em);
+    top: calc(100% + 1em);
+}
+
+.botton:hover::before, .botton:hover::after {
+    height: 410px;
+    width: 410px;
+}
+
+.botton:hover {
+    color: rgb(10, 25, 30);
+}
+
+.botton:active {
+    filter: brightness(.8);
+}
+
+/* From Uiverse.io by Anas92876 */
+/* From Uiverse.io by andrew-demchenk0 */
+.imput {
+    --input-focus: #2d8cf0;
+    --font-color: #323232;
+    --font-color-sub: #666;
+    --bg-color: #fff;
+    --main-color: #323232;
+    width: 200px;
+    height: 40px;
+    border-radius: 5px;
+    border: 2px solid var(--main-color);
+    background-color: var(--bg-color);
+    box-shadow: 4px 4px var(--main-color);
+    font-size: 15px;
+    font-weight: 600;
+    color: var(--font-color);
+    padding: 5px 10px;
+    outline: none;
+}
+
+.imput::placeholder {
+    color: var(--font-color-sub);
+    opacity: 0.1;
+}
+
+.input:focus {
+    border: 2px solid var(--input-focus);
+}
+
+/* Card */
+.card {
+    background-color: var(--card-background);
+    padding: 1rem;
+    border-radius: 0.5rem;
+    margin-bottom: 1rem;
+    border-left: 5px; /* Borda padrão transparente */
+    border-left-style: solid; /* Define o estilo da borda esquerda */
+    border-left-color: transparent; /* Borda padrão transparente */
+    transition: all 0.3s ease-in-out;
+    max-width: 300px;
+    word-wrap: break-word;/* Garante que nada saia do card */
+
+}
+.card:hover {
+    transform: translateY(-5px);
+    transition: all .5s ease-in-out;
+}
+
+/* Cores de borda de acordo com a prioridade */
+.priority-low {
+    border-left-color: var(--priority-green);
+}
+
+.priority-medium {
+    border-left-color: var(--priority-yellow);
+}
+
+.priority-high {
+    border-left-color: var(--priority-red);
+}
+
+/* Formulário de criação de cards */
+.create-card-form {
+    display: flex;
+    flex-direction: column;
+    gap: 0.5rem;
+    margin-bottom: 20px;
+
+}
+
+.create-card-form input,
+.create-card-form textarea,
+.create-card-form select,
+.priority-form select {
+    padding: 0.5rem;
+    border-radius: 0.25rem;
+    border: 1px solid var(--button-background);
+    background-color: var(--card-background);
+    color: var(--text-color);
+    font-size: 1rem;
+    font-family: Arial, sans-serif;
+    width: 100%;
+    box-sizing: border-box;
+    cursor: pointer;
+}
+.card .actions .priority-form select {
+    padding: 0.4rem; /* Ajuste o padding conforme necessário */
+    border-radius: 0.8rem; /* Ajuste o raio da borda */
+    border: 2px solid var(--priority-red); /* Altere a cor da borda */
+    background-color: #000000; /* Cor de fundo diferente */
+    color: #fff; /* Cor do texto */
+    font-size: 0.9rem; /* Tamanho da fonte diferente */
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1); /* Sombra opcional */
+}
+
+
+/* Estilo para opções dentro do select */
+.create-card-form select option,
+.priority-form select option {
+    background-color: var(--card-background); /* Fundo do item da lista */
+    color: var(--text-color); /* Cor do texto */
+}
+
+/* Estilo para o hover e foco do select */
+.create-card-form select:hover,
+.priority-form select:hover,
+.create-card-form select:focus,
+.priority-form select:focus {
+    border-color: #ec540e; /* Cor da borda ao passar o mouse ou focar */
+    outline: none; /* Remove a borda padrão ao focar */
+}
+
+
+
+/* Estilo   para o dropdown do select */
+.create-card-form select option:checked,
+.priority-form select option:checked {
+    background-color: #ec540e; /* Cor de fundo do item selecionado */
+    color: var(--text-color); /* Cor do texto do item selecionado */
+}
+
+.create-card-form button[type="submit"] {
+    background: linear-gradient(140.14deg, #ec540e 15.05%, #d6361f 114.99%)
+    padding-box,
+    linear-gradient(142.51deg, #ff9465 8.65%, #af1905 88.82%) border-box;
+    border-radius: 7px;
+    border: 2px solid;
+
+    text-shadow: 1px 1px 1px #00000040;
+    box-shadow: 8px 8px 20px #45090059;
+
+    padding: 10px 40px;
+    line-height: 20px;
+    cursor: pointer;
+    transition: all 0.3s;
+    color: white;
+    font-size: 18px;
+    font-weight: 500;
+}
+
+.create-card-form button[type="submit"]:hover {
+    box-shadow: none;
+    opacity: 20%;
+}
+
+/* Botões de ação */
+.edit-list, .delete-list, .edit-card, .delete-card {
+    display: block;
+    width: var(--button-width);
+    height: var(--button-height);
+    padding: var(--button-padding);
+    color: var(--button-text);
+    text-decoration: none;
+    border-radius: 0.25rem;
+    background-color: var(--button-background);
+    font-size: var(--button-font-size);
+    font-family: Arial, sans-serif;
+    text-align: center;
+    line-height: 1.5;
+    border: 1px solid transparent;
+    transition: background-color 0.3s;
+}
+
+/* Botões com o fundo padrão */
+.edit-list:hover, .delete-list:hover, .edit-card:hover, .delete-card:hover {
+    background-color: #555555; /* Cor de fundo ao passar o mouse */
+}
+
+/* Acessibilidade */
+.edit-list:focus, .delete-list:focus, .edit-card:focus, .delete-card:focus {
+    outline: 2px solid #ffffff;
+    outline-offset: 2px;
+}
+.button {
+    position: relative;
+    width: 150px;
+    height: 40px;
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    border: 1px solid #34974d;
+    background-color: #3aa856;
+}
+
+.button, .button__icon, .button__text {
+    transition: all 0.3s;
+}
+
+.button .button__text {
+    transform: translateX(30px);
+    color: #fff;
+    font-weight: 600;
+}
+
+.button .button__icon {
+    position: absolute;
+    transform: translateX(109px);
+    height: 100%;
+    width: 39px;
+    background-color: #34974d;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.button .svg {
+    width: 30px;
+    stroke: #fff;
+}
+
+.button:hover {
+    background: #34974d;
+}
+
+.button:hover .button__text {
+    color: transparent;
+}
+
+.button:hover .button__icon {
+    width: 148px;
+    transform: translateX(0);
+}
+
+.button:active .button__icon {
+    background-color: #2e8644;
+}
+
+.button:active {
+    border: 1px solid #2e8644;
+}
+

@@ -1,0 +1,71 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <title>Alterar Prioridade</title>
+    <meta charset="UTF-8">
+    <link rel="stylesheet" href="/css/styles.css">
+    <style>
+        /* Estilo para o dropdown */
+        .dropdown {
+            position: relative;
+            display: inline-block;
+        }
+
+        .dropdown-content {
+            display: none;
+            position: absolute;
+            background-color: #f9f9f9;
+            min-width: 160px;
+            box-shadow: 0px 8px 16px 0px rgba(0,0,0,0.2);
+            z-index: 1;
+        }
+
+        .dropdown-content a {
+            color: black;
+            padding: 12px 16px;
+            text-decoration: none;
+            display: block;
+        }
+
+        .dropdown-content a:hover {
+            background-color: #f1f1f1;
+        }
+
+        .dropdown:hover .dropdown-content {
+            display: block;
+        }
+    </style>
+</head>
+<body>
+<header>
+    <h1>Alterar Prioridade do Card</h1>
+</header>
+<main>
+    <form th:action="@{/cards/alterarPrioridade}" th:object="${card}" method="post">
+        <input type="hidden" th:field="*{id}" />
+
+        <div>
+            <label for="prioridade">Prioridade:</label>
+            <div class="dropdown">
+                <button type="button" class="dropbtn" id="prioridadeButton">Escolha a Prioridade</button>
+                <div class="dropdown-content">
+                    <a href="#" onclick="setPrioridade('Alta')">Altaaa</a>
+                    <a href="#" onclick="setPrioridade('Média')">Média</a>
+                    <a href="#" onclick="setPrioridade('Baixa')">Baixa</a>
+                </div>
+            </div>
+            <input type="hidden" id="prioridade" th:field="*{prioridade}" />
+        </div>
+
+        <button type="submit">Salvar</button>
+    </form>
+    <a href="/kanban/lista">Voltar para a lista</a>
+</main>
+<script>
+    function setPrioridade(prioridade) {
+        document.getElementById('prioridadeButton').innerText = prioridade;
+        document.getElementById('prioridade').value = prioridade;
+    }
+</script>
+</body>
+</html>

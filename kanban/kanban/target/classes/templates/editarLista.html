@@ -1,0 +1,19 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <title>Editar Lista</title>
+    <meta charset="UTF-8"/>
+    <link rel="stylesheet" href="/css/styles.css"/>
+</head>
+<body>
+<h1>Editar Lista</h1>
+
+<form action="#" th:action="@{/kanban/lista/editar}" method="post">
+    <input type="hidden" name="id" th:value="${lista.id}"/>
+    <input type="text" name="nome" th:value="${lista.nome}" required/>
+    <button type="submit">Atualizar Lista</button>
+</form>
+
+<a href="#" th:href="@{/kanban/lista}">Voltar</a>
+</body>
+</html>

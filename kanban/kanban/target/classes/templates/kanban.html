@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <title>Kanban Board</title>
+    <link rel="stylesheet" href="/css/style.css">
+</head>
+<body>
+<h1>Kanban Board</h1>
+
+<div class="board">
+    <div class="listas" th:each="lista : ${listas}">
+        <div class="lista">
+            <h2 th:text="${lista.nome}"></h2>
+            <div class="cards">
+                <div class="card" th:each="card : ${lista.cards}">
+                    <h3 th:text="${card.titulo}"></h3>
+                    <p th:text="${card.descricao}"></p>
+                    <form th:action="@{/cards/deletar/{id}(id=${card.id})}" method="post">
+                        <button type="submit">Deletar Card</button>
+                    </form>
+                </div>
+            </div>
+            <form th:action="@{/cards}" method="post">
+                <input type="hidden" name="listaId" th:value="${lista.id}">
+                <input type="text" name="titulo" placeholder="Novo Card">
+                <textarea name="descricao" placeholder="Descrição"></textarea>
+                <button type="submit">Adicionar Card</button>
+            </form>
+            <form th:action="@{/listas/deletar/{id}(id=${lista.id})}" method="post">
+                <button type="submit">Deletar Lista</button>
+            </form>
+        </div>
+    </div>
+    <div class="nova-lista">
+        <form th:action="@{/listas}" method="post">
+            <input type="text" name="nome" placeholder="Nova Lista">
+            <button type="submit">Adicionar Lista</button>
+        </form>
+    </div>
+</div>
+</body>
+</html>

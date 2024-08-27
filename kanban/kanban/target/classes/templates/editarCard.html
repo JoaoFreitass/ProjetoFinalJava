@@ -1,0 +1,25 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+  <meta charset="UTF-8">
+  <title>Editar Card</title>
+  <link rel="stylesheet" th:href="@{/css/styles.css}">
+</head>
+<body>
+<header>
+  <h1>Editar Card</h1>
+</header>
+<form th:action="@{/cards/editar}" method="post">
+  <input type="hidden" name="listaId" th:value="${listaId}">
+  <input type="hidden" name="id" th:value="${card.id}">
+
+  <label for="titulo">Título:</label>
+  <input type="text" id="titulo" name="titulo" th:value="${card.titulo}" required>
+
+  <label for="descricao">Descrição:</label>
+  <textarea id="descricao" name="descricao" required th:text="${card.descricao}"></textarea>
+
+  <button type="submit" class="btn btn-primary">Atualizar Card</button>
+</form>
+</body>
+</html>
