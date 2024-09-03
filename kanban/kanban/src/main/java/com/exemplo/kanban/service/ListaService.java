@@ -28,6 +28,6 @@ public class ListaService {
 
     public Lista buscarPorId(Long id) {
         Optional<Lista> optionalLista = listaRepository.findById(id);
-        return optionalLista.orElse(null); // Retorna null se não encontrar
+        return optionalLista.orElse(null);
     }
 }

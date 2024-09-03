@@ -63,7 +63,7 @@ public class CardController {
         return "redirect:/kanban/lista";
     }
 
-    // Novo método para mostrar o formulário de alteração de prioridade
+
     @GetMapping("/alterarPrioridade/{id}")
     public String mostrarFormularioAlterarPrioridade(@PathVariable Long id, Model model) {
         Card card = cardService.buscarPorId(id);
@@ -74,7 +74,7 @@ public class CardController {
         return "redirect:/kanban/lista";
     }
 
-    // Novo método para processar a alteração da prioridade
+
     @PostMapping("/alterarPrioridade")
     public String alterarPrioridade(@RequestParam Long id, @RequestParam String prioridade) {
         Card card = cardService.buscarPorId(id);
@@ -82,7 +82,7 @@ public class CardController {
             card.setPrioridade(prioridade);
             cardService.salvar(card);
         }
-        return "redirect:/kanban/lista"; // Redireciona de volta para a lista de cards
+        return "redirect:/kanban/lista";
     }
     @PostMapping("/mover")
     public String moverCard(@RequestParam Long cardId, @RequestParam Long novaListaId) {
@@ -93,6 +93,30 @@ public class CardController {
             cardService.salvar(card);
         }
         return "redirect:/kanban/lista";
+    }
+    @GetMapping("/listas")
+    public String listas() {
+        return "listas";
+    }
+
+    @GetMapping("/sobreacademia")
+    public String sobreAcademia() {
+        return "sobreacademia";
+    }
+
+    @GetMapping("/config")
+    public String config() {
+        return "config";
+    }
+
+    @GetMapping("/local")
+    public String local() {
+        return "local";
+    }
+
+    @GetMapping("/info")
+    public String info() {
+        return "info";
     }
 
 }

@@ -11,16 +11,16 @@ public class Card {
     private String titulo;
     private String descricao;
 
-    private String prioridade; // Nova propriedade adicionada
+    private String prioridade;
 
     @ManyToOne
     @JoinColumn(name = "lista_id")
     private Lista lista;
 
-    // Construtor padrão
+
     public Card() {}
 
-    // Construtor com parâmetros (opcional)
+
     public Card(String titulo, String descricao, String prioridade, Lista lista) {
         this.titulo = titulo;
         this.descricao = descricao;

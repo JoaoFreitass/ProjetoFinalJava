@@ -1,26 +1,40 @@
-/* Reset básico */
+
 * {
     margin: 0;
     padding: 0;
     box-sizing: border-box;
 }
 
-/* Variáveis de cor */
+
 :root {
-    --background-color: #2b2b2b; /* Cor de fundo geral */
-    --header-background: #1e1e1e; /* Cor de fundo do cabeçalho */
-    --text-color: #ffffff; /* Cor do texto */
-    --input-background: #444; /* Cor de fundo dos inputs */
-    --input-border: #666; /* Cor da borda dos inputs */
-    --button-background: linear-gradient(140.14deg, #ec540e 15.05%, #d6361f 114.99%); /* Gradiente do botão */
-    --button-hover-background: #d6361f; /* Cor do botão ao passar o mouse */
-    --link-color: #ec540e; /* Cor dos links */
-    --link-hover-color: #d6361f; /* Cor dos links ao passar o mouse */
-    --border-radius: 4px; /* Bordas arredondadas */
-    --padding: 10px; /* Padding interno */
+    --background-color: #2b2b2b;
+    --header-background: #1e1e1e;
+    --text-color: #ffffff;
+    --input-background: #444;
+    --input-border: #666;
+    --button-background: linear-gradient(140.14deg, #ec540e 15.05%, #d6361f 114.99%);
+    --button-hover-background: #d6361f;
+    --link-color: #ec540e;
+    --link-hover-color: #d6361f;
+    --border-radius: 4px;
+    --padding: 10px;
+}
+/* Modo escuro */
+.dark-mode {
+    --background-color: #b89f9f;
+    --header-background: #7e1414;
+    --lista-background: #fbdfdf;
+    --card-background: #ff8484;
+    --text-color: #731818;
+    --text-muted: #aeacac;
+    --button-background: #8c0000;
+    --button-text: #e0e0e0;
+    --priority-green: #00ff00;
+    --priority-yellow: #ffff00;
+    --priority-red: #ff0000; /
 }
 
-/* Estilo do corpo */
+
 body {
     font-family: Arial, sans-serif;
     background-color: var(--background-color);
@@ -29,13 +43,13 @@ body {
     text-align: center;
 }
 
-/* Estilo do título */
+
 h1 {
     margin-bottom: 20px;
     font-size: 24px;
 }
 
-/* Estilo do formulário */
+
 form {
     background-color: #333;
     padding: var(--padding);
@@ -75,7 +89,7 @@ form button:hover {
     background-color: var(--button-hover-background);
 }
 
-/* Estilo do link "Voltar" */
+
 a {
     display: inline-block;
     margin-top: 20px;
@@ -93,7 +107,7 @@ a:hover {
     color: var(--text-color);
 }
 
-/* Responsividade */
+
 @media (max-width: 768px) {
     body {
         padding: 10px;
